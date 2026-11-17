@@ -44,7 +44,7 @@ def read(path: Path) -> str:
 
 def page_text(name: str) -> str:
     """The text of a lab page as a reader sees it: tags removed, entities decoded."""
-    return html.unescape(re.sub(r"<[^>]+>", " ", read(LABS / name)))
+    return html.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"</?span[^>]*>", "", read(LABS / name))))
 
 
 def squash(text: str) -> str:
@@ -150,7 +150,7 @@ def lab_4_1():
     assert headline - sum(by_airport.values()) == k["difference"] > 0
     assert len(rows) - len(clean) == k["duplicate_rows"] == 7
     last = max(r["date"] for r in rows)
-    assert last == k["last_update"] == "2026-08-31" and f"آخر تحديث للبيانات: {last}" in page
+    assert last == k["last_update"] == "2026-08-31" and f'آخر تحديث للبيانات: <span dir="ltr">{last}</span>' in page
     assert "الربع الثالث 2026" in page and not [r for r in rows if r["date"][5:7] == "09"]
     wait_section = re.search(r"<h2>متوسط الانتظار</h2>.*?</section>", page, re.S).group(0)
     assert not re.search(r"دقيقة|دقائق|ثانية|ثوان", wait_section + page.split("<script>")[1]), "the wait chart has a unit"

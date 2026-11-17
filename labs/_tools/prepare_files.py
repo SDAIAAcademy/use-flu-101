@@ -373,7 +373,7 @@ DASH_HTML = """<!doctype html>
     <p>المصدر: نظام طلبات نقاط المساعدة في الصالات.</p>
     <p>النطاق: نقاط المساعدة في صالات المطارات الثلاثة فقط، ولا يشمل مركز الاتصال.</p>
     <p>مالك اللوحة: إدارة خدمات المسافرين.</p>
-    <p>آخر تحديث للبيانات: __UPDATED__</p>
+    <p>آخر تحديث للبيانات: <span dir="ltr">__UPDATED__</span></p>
   </footer>
 </main>
 <script>
@@ -527,15 +527,20 @@ def csv_text(rows) -> str:
     return buf.getvalue()
 
 
+def esc(text) -> str:
+    """Escaped text for a lab page; a date keeps its own direction inside Arabic text."""
+    return re.sub(r"(\d{4}-\d{2}-\d{2})", r'<span class="ltr" dir="ltr"></span>', html.escape(str(text)))
+
+
 def doc_block(lines, title=None) -> str:
-    head = f"<h4>{html.escape(title)}</h4>" if title else ""
-    return '<div class="box doc">' + head + "".join(f"<p>{html.escape(x)}</p>" for x in lines) + "</div>"
+    head = f"<h4>{esc(title)}</h4>" if title else ""
+    return '<div class="box doc">' + head + "".join(f"<p>{esc(x)}</p>" for x in lines) + "</div>"
 
 
 def table_block(rows) -> str:
-    out = ["<table>", "<tr>" + "".join(f"<th>{html.escape(c)}</th>" for c in rows[0]) + "</tr>"]
+    out = ["<table>", "<tr>" + "".join(f"<th>{esc(c)}</th>" for c in rows[0]) + "</tr>"]
     for r in rows[1:]:
-        out.append("<tr>" + "".join(f"<td>{html.escape(c)}</td>" for c in r) + "</tr>")
+        out.append("<tr>" + "".join(f"<td>{esc(c)}</td>" for c in r) + "</tr>")
     return "\n".join(out + ["</table>"])
 
 
@@ -600,14 +605,14 @@ def main() -> None:
     write(SOL / "key.json", json.dumps(key, ensure_ascii=False, indent=2) + "\n")
     # the lab pages show the same text as the files
     inject(LABS / "M1_1_vignettes.html", {"vignettes": "<table>\n<tr><th>الموقف</th><th>خانتك</th><th>سببك</th></tr>\n" + "\n".join(
-        f'<tr><td><b>{v[0]}.</b> {html.escape(v[1])}</td><td class="fill"></td><td class="fill"></td></tr>' for v in VIGNETTES) + "\n</table>",
+        f'<tr><td><b>{v[0]}.</b> {esc(v[1])}</td><td class="fill"></td><td class="fill"></td></tr>' for v in VIGNETTES) + "\n</table>",
         "key": "<table>\n<tr><th>الموقف</th><th>الخانة</th><th>السبب</th></tr>\n" + "\n".join(
-        f"<tr><td><b>{v[0]}</b></td><td>{CATS[v[2]]}</td><td>{html.escape(v[3])}</td></tr>" for v in VIGNETTES) + "\n</table>"})
+        f"<tr><td><b>{v[0]}</b></td><td>{CATS[v[2]]}</td><td>{esc(v[3])}</td></tr>" for v in VIGNETTES) + "\n</table>"})
     blocks = {}
     for it in ITEMS:
         blocks[it["id"]] = table_block(it["table"]) if "table" in it else doc_block(it["text"])
         blocks[it["id"] + "-key"] = ("<table>\n<tr><th>التفصيل</th><th>نوعه</th><th>الحركة</th></tr>\n" + "\n".join(
-            f"<tr><td>{html.escape(f[0])}</td><td>{f[1]}</td><td>{html.escape(f[2])}</td></tr>" for f in it["flagged"]) + "\n</table>\n"
+            f"<tr><td>{esc(f[0])}</td><td>{f[1]}</td><td>{esc(f[2])}</td></tr>" for f in it["flagged"]) + "\n</table>\n"
             + doc_block(it["sanitised"], "نسخة منقّاة مرجعية"))
     inject(LABS / "M2_1_sanitise.html", blocks)
     s = STANDIN["3.1"]
@@ -615,17 +620,17 @@ def main() -> None:
                                          "good-request": doc_block(GOOD_REQUEST, "طلب مرجعي بعناصره الخمسة"), "good-reply": doc_block(s["good_reply"], "ما أعاده المساعد للطلب المرجعي")})
     inject(LABS / "M4_1_dashboard.html", {"summary": doc_block([f"{i}. {x['text']}" for i, x in enumerate(summary, 1)], "ملخص كتبه «زميل»"),
         "summary-key": "<table>\n<tr><th>الجملة</th><th>الحكم</th><th>لماذا</th></tr>\n" + "\n".join(
-            f"<tr><td>{i}</td><td>{'تُقبل' if x['ok'] else 'علامة تحذيرية'}</td><td>{html.escape(x['flag'])}</td></tr>" for i, x in enumerate(summary, 1)) + "\n</table>",
+            f"<tr><td>{i}</td><td>{'تُقبل' if x['ok'] else 'علامة تحذيرية'}</td><td>{esc(x['flag'])}</td></tr>" for i, x in enumerate(summary, 1)) + "\n</table>",
         "numbers": f"<p>الإجمالي في البطاقة <b>{facts['headline_total']:,}</b>، ومجموع المطارات الثلاثة في الجدول <b>{facts['sum_of_airports']:,}</b>. الفرق <b>{facts['difference']:,}</b> طلبًا: أسبوع من طلبات الأمتعة في مطار النخيل حُمّل مرتين ({facts['duplicate_rows']} صفوف مكررة).</p>"})
     dblocks = {}
     for d in DRAFTS:
-        dblocks[d["id"]] = (f"<p><b>{html.escape(d['role'])}</b></p>\n" + doc_block(d["draft"], "المسودة") + "\n" + doc_block(d["source"], d["source_title"]))
+        dblocks[d["id"]] = (f"<p><b>{esc(d['role'])}</b></p>\n" + doc_block(d["draft"], "المسودة") + "\n" + doc_block(d["source"], d["source_title"]))
     dblocks["key"] = "<table>\n<tr><th>المسودة</th><th>القرار</th><th>الفحص</th><th>لماذا</th></tr>\n" + "\n".join(
-        f"<tr><td><b>{d['id']}</b></td><td>{DECISIONS[d['decision']]}</td><td>{CHECKS[d['check']]}</td><td>{html.escape(d['why'])}</td></tr>" for d in DRAFTS) + "\n</table>"
+        f"<tr><td><b>{d['id']}</b></td><td>{DECISIONS[d['decision']]}</td><td>{CHECKS[d['check']]}</td><td>{esc(d['why'])}</td></tr>" for d in DRAFTS) + "\n</table>"
     inject(LABS / "M5_1_drafts.html", dblocks)
-    inject(LABS / "M6_1_disclosure.html", {"output": doc_block(DISCLOSURE["output"], "المخرج النهائي") + "\n<ul>\n<li><b>ما فعله المساعد:</b> " + html.escape(DISCLOSURE["assistance"]) + "</li>\n<li><b>ما راجعه الموظف:</b> " + html.escape(DISCLOSURE["checked"]) + "</li>\n</ul>",
+    inject(LABS / "M6_1_disclosure.html", {"output": doc_block(DISCLOSURE["output"], "المخرج النهائي") + "\n<ul>\n<li><b>ما فعله المساعد:</b> " + esc(DISCLOSURE["assistance"]) + "</li>\n<li><b>ما راجعه الموظف:</b> " + esc(DISCLOSURE["checked"]) + "</li>\n</ul>",
         "lines": "<table>\n<tr><th>السطر</th><th>الحكم</th><th>لماذا</th></tr>\n" + "\n".join(
-            f"<tr><td>{html.escape(x['text'])}</td><td>{'يستوفي العنصرين' if x['ok'] else 'ناقص'}</td><td>{html.escape(x['note'])}</td></tr>" for x in DISCLOSURE["lines"]) + "\n</table>"})
+            f"<tr><td>{esc(x['text'])}</td><td>{'يستوفي العنصرين' if x['ok'] else 'ناقص'}</td><td>{esc(x['note'])}</td></tr>" for x in DISCLOSURE["lines"]) + "\n</table>"})
     print(f"files written under {FILES.name}/ and {SOL.name}/")
     print("dashboard:", json.dumps(facts, ensure_ascii=False))
 

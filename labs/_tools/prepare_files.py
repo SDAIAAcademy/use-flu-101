@@ -24,7 +24,11 @@ import io
 import json
 import random
 import re
+import sys
 from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # Arabic output on a Windows console
 
 LABS = Path(__file__).resolve().parent.parent
 FILES = LABS / "files"
@@ -626,7 +630,7 @@ def main() -> None:
     for d in DRAFTS:
         dblocks[d["id"]] = (f"<p><b>{esc(d['role'])}</b></p>\n" + doc_block(d["draft"], "المسودة") + "\n" + doc_block(d["source"], d["source_title"]))
     dblocks["key"] = "<table>\n<tr><th>المسودة</th><th>القرار</th><th>الفحص</th><th>لماذا</th></tr>\n" + "\n".join(
-        f"<tr><td><b>{d['id']}</b></td><td>{DECISIONS[d['decision']]}</td><td>{CHECKS[d['check']]}</td><td>{esc(d['why'])}</td></tr>" for d in DRAFTS) + "\n</table>"
+        f"<tr><td><b>{d['id'][1:]}</b></td><td>{DECISIONS[d['decision']]}</td><td>{CHECKS[d['check']]}</td><td>{esc(d['why'])}</td></tr>" for d in DRAFTS) + "\n</table>"
     inject(LABS / "M5_1_drafts.html", dblocks)
     inject(LABS / "M6_1_disclosure.html", {"output": doc_block(DISCLOSURE["output"], "المخرج النهائي") + "\n<ul>\n<li><b>ما فعله المساعد:</b> " + esc(DISCLOSURE["assistance"]) + "</li>\n<li><b>ما راجعه الموظف:</b> " + esc(DISCLOSURE["checked"]) + "</li>\n</ul>",
         "lines": "<table>\n<tr><th>السطر</th><th>الحكم</th><th>لماذا</th></tr>\n" + "\n".join(

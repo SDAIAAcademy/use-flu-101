@@ -23,6 +23,9 @@ import re
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")  # Arabic output on a Windows console
+
 HERE = Path(__file__).resolve().parent
 LABS = HERE.parent
 FILES = LABS / "files"

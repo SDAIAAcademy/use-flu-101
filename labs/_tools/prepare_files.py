@@ -529,7 +529,7 @@ def csv_text(rows) -> str:
 
 def esc(text) -> str:
     """Escaped text for a lab page; a date keeps its own direction inside Arabic text."""
-    return re.sub(r"(\d{4}-\d{2}-\d{2})", r'<span class="ltr" dir="ltr"></span>', html.escape(str(text)))
+    return re.sub(r"(\d{4}-\d{2}-\d{2})", r'<span class="ltr" dir="ltr">\1</span>', html.escape(str(text)))
 
 
 def doc_block(lines, title=None) -> str:

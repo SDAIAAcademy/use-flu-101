@@ -1,0 +1,41 @@
+# الحد الأدنى للإلمام بالبيانات والذكاء الاصطناعي لجميع العاملين
+
+> تعرف أين ينتهي دورك، وتحمي المعلومة قبل أن تشاركها، وتقرأ قبل أن تثق، وتتحقق قبل أن تعتمد، وتُفصح، وتصعّد ما يتجاوز صلاحيتك. مقرر من أكاديمية سدايا، الرمز USE-FLU-101، الإصدار 2027.1.0، بالعربية.
+
+كل شريحة عنوان مثل "#### [day1#slide-id] العنوان": استشهد بالشرائح بهذا المعرّف، وكل استشهاد رابط (slides/day1.html#slide-id). هذه الملفات هي ما يراه المشارك: لا ملاحظات المدرّب فيها ولا مفاتيح الإجابة.
+
+## المقرر
+
+- [صفحة المقرر](https://sdaiaacademy.github.io/use-flu-101/index.md): نظرة عامة ونواتج التعلم والجدول والمختبرات؛ الصفحة نفسها https://sdaiaacademy.github.io/use-flu-101/index.html
+- [المقرر كاملًا](https://sdaiaacademy.github.io/use-flu-101/llms-full.txt): كل وحدة وجلسة وشريحة في ملف واحد، نحو 16,667 من الوحدات النصية
+- [أسئلة التدريب](https://sdaiaacademy.github.io/use-flu-101/practice.html): أسئلة تختبر بها نفسك، مع تعليل بعد كل إجابة
+
+## الشرائح
+
+- [الوحدة 1: ما البيانات وما الذكاء الاصطناعي، وأين ينتهي دورك](https://sdaiaacademy.github.io/use-flu-101/slides/module1.md): سجلات قد تخطئ، وأنماط قد تُقنع وهي خاطئة، وحدّ فاصل بين الاستخدام والعمل المتخصص؛ الجلسات: استخدام يومي أم عمل متخصص؟؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module1.html؛ نحو 2,633 من الوحدات النصية
+- [الوحدة 2: الأدوات المعتمدة وحماية المعلومات](https://sdaiaacademy.github.io/use-flu-101/slides/module2.md): الأداة والحساب والقناة المعتمدة، وما لا يدخل أي أداة، والصياغة الأكثر أمانًا؛ الجلسات: احمِ المعلومة قبل أن تشاركها؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module2.html؛ نحو 2,439 من الوحدات النصية
+- [الوحدة 3: طلب المساعدة والتعامل مع النتيجة بوصفها مسودة](https://sdaiaacademy.github.io/use-flu-101/slides/module3.md): خمسة عناصر في كل طلب، ومسودة لا تصير عملًا حتى تراجعها أنت؛ الجلسات: اطلب بوضوح، وراجع قبل أن تعتمد؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module3.html؛ نحو 2,170 من الوحدات النصية
+- [الوحدة 4: قراءة الرسوم البيانية والجداول ولوحات المعلومات والمخرجات](https://sdaiaacademy.github.io/use-flu-101/slides/module4.md): سبعة أشياء تقرؤها قبل الرقم، وعلامات تحذيرية تمنع الاعتماد؛ الجلسات: اقرأ قبل أن تثق؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module4.html؛ نحو 2,557 من الوحدات النصية
+- [الوحدة 5: التحقق والتوقف](https://sdaiaacademy.github.io/use-flu-101/slides/module5.md): المقارنة بالمصدر، والفحص الخماسي، وأربعة قرارات: استخدم، عدّل، أوقف مؤقتًا، صعّد؛ الجلسات: تحقق، ثم قرّر؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module5.html؛ نحو 2,155 من الوحدات النصية
+- [الوحدة 6: الإفصاح والمساءلة](https://sdaiaacademy.github.io/use-flu-101/slides/module6.md): المسؤولية تبقى عليك، وسطر واحد يقول ما ساعدك وما تحققت منه؛ الجلسات: عملك باسمك، ولو ساعدك المساعد؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module6.html؛ نحو 1,975 من الوحدات النصية
+- [الوحدة 7: التصعيد والمراجعة البشرية](https://sdaiaacademy.github.io/use-flu-101/slides/module7.md): من يملك ماذا، ومتى تتوقف وتسأل، وماذا تكتب في رسالة التصعيد؛ الجلسات: لمن تصعّد، ومتى؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/slides/module7.html؛ نحو 2,160 من الوحدات النصية
+
+## المختبرات
+
+- [المختبر 1.1: ثمانية مواقف في مطارات طيف](https://sdaiaacademy.github.io/use-flu-101/labs/M1_1_vignettes.md): الوحدة 1، الجلسة 1، 10 دقائق؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/labs/M1_1_vignettes.html
+- [المختبر 2.1: نقِّ خمسة عناصر عمل](https://sdaiaacademy.github.io/use-flu-101/labs/M2_1_sanitise.md): الوحدة 2، الجلسة 1، 15 دقيقة؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/labs/M2_1_sanitise.html
+- [المختبر 3.1: طلب تلخيص اجتماع](https://sdaiaacademy.github.io/use-flu-101/labs/M3_1_request.md): الوحدة 3، الجلسة 1، 15 دقيقة؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/labs/M3_1_request.html
+- [المختبر 4.1: لوحة خدمات المسافرين وملخصها](https://sdaiaacademy.github.io/use-flu-101/labs/M4_1_dashboard.md): الوحدة 4، الجلسة 1، 15 دقيقة؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/labs/M4_1_dashboard.html
+- [المختبر 5.1: ست مسودات وقرار لكل مسودة](https://sdaiaacademy.github.io/use-flu-101/labs/M5_1_drafts.md): الوحدة 5، الجلسة 1، 15 دقيقة؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/labs/M5_1_drafts.html
+- [المختبر 6.1: سطر إفصاح لمخرج نهائي](https://sdaiaacademy.github.io/use-flu-101/labs/M6_1_disclosure.md): الوحدة 6، الجلسة 1، 5 دقائق؛ الصفحة: https://sdaiaacademy.github.io/use-flu-101/labs/M6_1_disclosure.html
+
+## ملفات السياق
+
+- [context/course.md](https://sdaiaacademy.github.io/use-flu-101/context/course.md): المقرر كاملًا، لمساعد يقبل ملفًا مرفقًا، نحو 16,667 من الوحدات النصية
+- [context/module1.md](https://sdaiaacademy.github.io/use-flu-101/context/module1.md): الوحدة 1، نحو 2,633 من الوحدات النصية
+- [context/module2.md](https://sdaiaacademy.github.io/use-flu-101/context/module2.md): الوحدة 2، نحو 2,439 من الوحدات النصية
+- [context/module3.md](https://sdaiaacademy.github.io/use-flu-101/context/module3.md): الوحدة 3، نحو 2,170 من الوحدات النصية
+- [context/module4.md](https://sdaiaacademy.github.io/use-flu-101/context/module4.md): الوحدة 4، نحو 2,557 من الوحدات النصية
+- [context/module5.md](https://sdaiaacademy.github.io/use-flu-101/context/module5.md): الوحدة 5، نحو 2,155 من الوحدات النصية
+- [context/module6.md](https://sdaiaacademy.github.io/use-flu-101/context/module6.md): الوحدة 6، نحو 1,975 من الوحدات النصية
+- [context/module7.md](https://sdaiaacademy.github.io/use-flu-101/context/module7.md): الوحدة 7، نحو 2,160 من الوحدات النصية
